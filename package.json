@@ -1,0 +1,29 @@
+{
+  "name": "carabistouilles",
+  "version": "0.0.1",
+  "description": "Projet étudiant d'Informatique.",
+  "main": "server.js",
+  "type": "module" ,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JulienComolli/Carabistouilles.git"
+  },
+  "keywords": [
+    "nodejs",
+    "webserv"
+  ],
+  "author": "Sasha, Ita, Julien",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JulienComolli/Carabistouilles/issues"
+  },
+  "homepage": "https://github.com/JulienComolli/Carabistouilles#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.1",
+    "sqlite3": "^5.0.2"
+  }
+}
