@@ -16,9 +16,22 @@ server.use(Express.static('public'));
 server.engine('hbs', ExpressHandlebars({extname: '.hbs'}));
 server.set('view engine',  'hbs');
 
+// Routes
 server.get('/', (req, res) => {
     res.render('home');
-})
+});
+
+server.get('/login', (req, res) => {
+    res.render('login');
+});
+
+server.get('/register', (req, res) => {
+    res.render('register');
+});
+
+server.get('/logout', (req, res) => {
+    res.send('Vous êtes à présent déconnecté ! <a href="/">Retour à l\'accueil</a>');
+});
 
 
 server.listen(SERVER_PORT, () => {
