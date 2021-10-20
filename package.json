@@ -24,6 +24,7 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "better-sqlite3": "^7.4.3",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.4"
   }
 }

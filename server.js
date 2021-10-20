@@ -1,21 +1,26 @@
 // Node Modules Imports
 import Database from "better-sqlite3";
-import fs from "fs";
+import Express from "express";
+import ExpressHandlebars from "express-handlebars";
+import fs, { appendFile } from "fs";
 
 // Custom Imports
-import { DBNAME } from "./config/public-config.js";
+import { DBNAME, SERVER_PORT } from "./config/public-config.js";
 
 // Init DB
 const DB = new Database(`./db/${DBNAME}`);
 
+// Init Express server
+const server = Express();
+server.use(Express.static('public'));
+server.engine('hbs', ExpressHandlebars({extname: '.hbs'}));
+server.set('view engine',  'hbs');
 
-console.log("Hello Carabistouilles.");
+server.get('/', (req, res) => {
+    res.render('home');
+})
 
 
-/* EXAMPLES D'USAGE DE LA BASE DE DONNEES */
-DB.exec(fs.readFileSync('./db/scripts/clearDb.sql', 'utf-8'));
-DB.exec(fs.readFileSync('./db/scripts/createDb.sql', 'utf-8'));
-DB.exec(fs.readFileSync('./db/scripts/populateDb.sql', 'utf-8'));
-
-console.log(DB.prepare('SELECT * FROM Users').all()); // Retourne un tableau
-console.log(DB.prepare('SELECT * FROM Games').get()); // Retourne la première valeur
+server.listen(SERVER_PORT, () => {
+    console.log(`✅ Server started on port ${SERVER_PORT}`);
+});
