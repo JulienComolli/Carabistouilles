@@ -1,12 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{{{ title }}}</title>
+
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+
+    <style>
+        html, body {
+            min-height: 100vh;
+        }
+    </style>
 </head>
+
 <body>
-    {{{ body }}}
+    <div class="vertical-center">
+
+        <nav class="navbar navbar-dark bg-dark">
+            <a class="mb-0 h1 navbar-brand" href="/">Carabistouilles</a>
+            <form class="form-inline">
+                <a href="login" class="btn btn-light" type="button">Se connecter</a>
+            </form>
+        </nav>
+
+        {{{ body }}}
+    </div>
+
+
+    <script src="jquery-3.3.1.slim.min.js"></script>
+    <script src="popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+
 </body>
+
 </html>

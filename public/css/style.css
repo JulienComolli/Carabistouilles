@@ -1,0 +1,10 @@
+.c-rouge {
+    background-color: #bd2217;
+}
+
+.vertical-center {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
