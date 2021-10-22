@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="mb-0 h1 navbar-brand" href="/">Carabistouilles</a>
+
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+            
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link disabled" href="/">A propos <span class="sr-only">(current)</span></a>
+            </li>
+
+        </ul>
+    </div>
+
+    <form class="form-inline my-2 my-lg-0">
+        <a href="register" class="btn btn-outline-light crb-navbtn {{#if onRegisterPage }} disabled{{/if}}" type="button">S'inscrire</a>
+        <a href="login" class="btn btn-light ml-2 crb-navbtn {{#if onLoginPage }} disabled{{/if}}" type="button">Se connecter</a>
+    </form>
+</nav>

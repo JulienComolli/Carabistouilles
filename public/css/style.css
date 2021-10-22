@@ -1,10 +1,25 @@
-.c-rouge {
-    background-color: #bd2217;
+html, body {
+    min-height: 100vh;
 }
-
-.vertical-center {
-    height: 100%;
+.crb-center-content {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+.crb-mt-sm {
+    margin-top: 60px;
+}
+.crb-form {
+    border: 1px solid #cacacaca;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.crb-border-dark {
+    border: 1px solid #bebebebe;
+}
+
+.crb-navbtn {
+    width: 118px;
 }

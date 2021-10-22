@@ -1,15 +1,29 @@
-    <form class="form-signin">
-      <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-      <h1 class="h3 mb-3 font-weight-normal">Inscrivez-Vous</h1>
-      <label for="inputEmail" class="sr-only">Adresse Email</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-      <label for="inputPassword" class="sr-only">Mot de passe</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Se souvenir de moi
-        </label>
-      </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
-    </form>
+<main class="crb-center-content crb-mt-sm">
+  <h1 class="mb-4">Inscription</h1>
+
+  <form class="form-signin crb-form" style="width: 600px; max-width: 95vw;" method="POST" action="">
+    <img class="mb-4" src="./img/logo.png" alt="" width="120" height="120" style="margin: 0 auto; display: block;">
+    <div class="form-group">
+      <label for="inputPseudonyme">Pseudonyme</label>
+      <input type="text" id="inputPseudonyme" class="form-control" placeholder="Pseudonyme" name="username">
+      <small class="form-text text-muted">Vous pourrez le changer plus tard.</small>
+    </div>
+
+    <div class="form-group">
+      <label for="inputEmail">Adresse e-mail</label>
+      <input type="email" id="inputEmail" class="form-control" placeholder="Entrez votre e-mail" name="email">
+      <input type="email" id="inputEmail" class="form-control mt-1" placeholder="Confirmez votre e-mail"
+        name="emailConfirm">
+      <small class="form-text text-muted">Nous ne partagerons pas votre e-mail.</small>
+    </div>
+    <div class="form-group">
+      <label for="inputPassword">Mot de passe</label>
+      <input id="inputPassword" type="password" class="form-control" placeholder="Entrez votre mot de passe"
+        name="password">
+      <input id="inputPassword" type="password" class="form-control mt-1" placeholder="Confirmez votre mot de passe"
+        name="passwordConfirm">
+    </div>
+    <button class="btn btn-lg btn-dark btn-block mt-4" type="submit">S'inscrire</button>
+    <p class="mt-5 mb-3 text-muted">&copy; Carabistouilles - Page d'inscription</p>
+  </form>
+</main>
