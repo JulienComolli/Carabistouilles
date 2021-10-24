@@ -8,12 +8,12 @@
 
         <div class="form-group">
             <label for="inputEmail">Adresse Email</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Votre email" name="email">
+            <input type="email" id="inputEmail" class="form-control {{#if (isInvalid 'email' errors)}}is-invalid{{/if}}" placeholder="Votre email" name="email">
         </div>
 
         <div class="form-group">
             <label for="passwordInput">Mot de passe</label>
-            <input id="passwordInput" type="password" class="form-control" placeholder="Entrez votre mot de passe"
+            <input id="passwordInput" type="password" class="form-control {{#if (isInvalid 'password' errors)}}is-invalid{{/if}}" placeholder="Entrez votre mot de passe"
                 name="password">
         </div>
         <button class="btn btn-lg btn-dark btn-block mt-4" type="submit">Se connecter</button>
