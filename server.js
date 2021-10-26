@@ -3,7 +3,7 @@ import Database from "better-sqlite3";
 import Express from "express";
 import ExpressHandlebars from "express-handlebars";
 import ExpressSession from "express-session";
-import CookieParser from "cookie-parser";
+const SessionStore = new ExpressSession.MemoryStore();
 import fs from "fs";
 
 // Custom Imports
@@ -11,8 +11,6 @@ import { DBNAME, SERVER_PORT } from "./config/public-config.js";
 
 import LoginRoute from "./routes/login-route.js";
 import RegisterRoute from "./routes/register-route.js";
-
-const SESSION_SECRET_KEY = "notverysecretkey"
 
 // Init DB
 if(!fs.existsSync(`./db/${DBNAME}`)){
@@ -27,19 +25,19 @@ const DB = new Database(`./db/${DBNAME}`);
 // Init Express server
 const server = Express();
 server.use(Express.static('public'));
-server.use(CookieParser());
 server.use(Express.urlencoded({ extended: true })); // Middleware for handling forms
+const SESSION_SECRET_KEY = "notverysecretkey"
 server.use(ExpressSession({
     secret: SESSION_SECRET_KEY,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: { maxAge : 24 * 60 * 60 * 60 * 1000},
-    resave: false
+    resave: false,
+    SessionStore
 }));
 server.engine('hbs', ExpressHandlebars({
     extname: '.hbs',
     helpers : {
         isInvalid : function(inputName, errorList){
-            console.log(errorList);
             if(!errorList)
                 return false;
 
@@ -59,14 +57,15 @@ server.set('view engine',  'hbs');
 
 // == Router ==
 server.get('/', (req, res) => {
-    res.render('home');
+    res.render('home', { session : req.session });
 });
 
 server.use('/login', LoginRoute(DB));
 server.use('/register', RegisterRoute(DB));
 
 server.get('/logout', (req, res) => {
-    res.render('logout');
+    req.session.destroy();
+    res.redirect('/');
 });
 
 // Launching server
