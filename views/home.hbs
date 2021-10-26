@@ -1,6 +1,10 @@
 <div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">Bienvenue sur Carabistouilles !</h1>
-    <p class="lead">Un petit site sympas pour passer le temps avé les collègues !</p>
-  </div>
+	<div class="container">
+		{{#if session.authenticated }}
+		<h1 class="display-4">Bonjour {{ session.user.username }} !</h1>
+		{{else}}
+		<h1 class="display-4">Bienvenue sur Carabistouilles !</h1>
+		{{/if}}
+		<p class="lead">Un petit site sympas pour passer le temps avé les collègues !</p>
+	</div>
 </div>

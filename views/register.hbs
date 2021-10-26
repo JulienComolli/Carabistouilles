@@ -1,32 +1,41 @@
 <main class="crb-center-content crb-mt-sm">
-  <h1 class="mb-4">Inscription</h1>
+	<h1 class="mb-4">Inscription</h1>
 
-  <form class="form-signin crb-form" style="width: 600px; max-width: 95vw;" method="POST" action="">
-    <img class="mb-4" src="./img/logo.png" alt="" width="120" height="120" style="margin: 0 auto; display: block;">
+	<form class="form-signin crb-form" style="width: 600px; max-width: 95vw;" method="POST" action="">
+		<img class="mb-4" src="./img/logo.png" alt="" width="120" height="120" style="margin: 0 auto; display: block;">
 
-    {{> errorDisplayer }}
+		{{> errorDisplayer }}
 
-    <div class="form-group">
-      <label for="inputPseudonyme">Pseudonyme</label>
-      <input type="text" id="inputPseudonyme" class="form-control {{#if (isInvalid 'username' errors)}}is-invalid{{/if}}" placeholder="Pseudonyme" name="username">
-      <small class="form-text text-muted">Vous pourrez le changer plus tard.</small>
-    </div>
+		<div class="form-group">
+			<label for="inputPseudonyme">Pseudonyme</label>
+			<input type="text" name="username" id="inputPseudonyme"
+				class="form-control {{#if (isInvalid 'username' errors)}}is-invalid{{/if}}" 
+				placeholder="Pseudonyme" value="{{ inputValues.username }}">
+			<small class="form-text text-muted">Vous pourrez le changer plus tard.</small>
+		</div>
 
-    <div class="form-group">
-      <label for="inputEmail">Adresse e-mail</label>
-      <input type="email" id="inputEmail" class="form-control {{#if (isInvalid 'email' errors)}}is-invalid{{/if}}" placeholder="Entrez votre e-mail" name="email">
-      <input type="email" id="inputEmail" class="form-control mt-1 {{#if (isInvalid 'emailConfirm' errors)}}is-invalid{{/if}}" placeholder="Confirmez votre e-mail"
-        name="emailConfirm">
-      <small class="form-text text-muted">Nous ne partagerons pas votre e-mail.</small>
-    </div>
-    <div class="form-group">
-      <label for="inputPassword">Mot de passe</label>
-      <input id="inputPassword" type="password" class="form-control {{#if (isInvalid 'password' errors)}}is-invalid{{/if}}" placeholder="Entrez votre mot de passe"
-        name="password">
-      <input id="inputPassword" type="password" class="form-control mt-1 {{#if (isInvalid 'passwordConfirm' errors)}}is-invalid{{/if}}" placeholder="Confirmez votre mot de passe"
-        name="passwordConfirm">
-    </div>
-    <button class="btn btn-lg btn-dark btn-block mt-4" type="submit">S'inscrire</button>
-    <p class="mt-5 mb-3 text-muted">&copy; Carabistouilles - Page d'inscription</p>
-  </form>
+		<div class="form-group">
+			<label for="inputEmail">Adresse e-mail</label>
+			<input type="email" name="email" id="inputEmail" 
+				class="form-control {{#if (isInvalid 'email' errors)}}is-invalid{{/if}}"
+				placeholder="Entrez votre e-mail" value="{{ inputValues.email }}">
+			<input type="email" name="emailConfirm" id="inputEmail"
+				class="form-control mt-1 {{#if (isInvalid 'emailConfirm' errors)}}is-invalid{{/if}}"
+				placeholder="Confirmez votre e-mail" value="{{ inputValues.emailConfirm }}">
+			<small class="form-text text-muted">Nous ne partagerons pas votre e-mail.</small>
+		</div>
+
+		<div class="form-group">
+			<label for="inputPassword">Mot de passe</label>
+			<input type="password" name="password" id="inputPassword" 
+				class="form-control {{#if (isInvalid 'password' errors)}}is-invalid{{/if}}"
+				placeholder="Entrez votre mot de passe" value="{{ inputValues.password }}">
+			<input type="password" name="passwordConfirm" id="inputPassword"
+				class="form-control mt-1 {{#if (isInvalid 'passwordConfirm' errors)}}is-invalid{{/if}}"
+				placeholder="Confirmez votre mot de passe" value="{{ inputValues.passwordConfirm }}">
+		</div>
+
+		<button class="btn btn-lg btn-dark btn-block mt-4" type="submit">S'inscrire</button>
+		<p class="mt-5 mb-3 text-muted">&copy; Carabistouilles - Page d'inscription</p>
+	</form>
 </main>

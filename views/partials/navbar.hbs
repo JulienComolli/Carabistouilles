@@ -16,7 +16,12 @@
     </div>
 
     <form class="form-inline my-2 my-lg-0">
+        {{#if session.authenticated}}
+        <a href="logout" class="btn btn-outline-light crb-navbtn" type="button">Déconnexion</a>
+        <a href="account" class="btn btn-light ml-2 crb-navbtn" type="button">Mon compte</a>
+        {{else}}
         <a href="register" class="btn btn-outline-light crb-navbtn {{#if onRegisterPage }} disabled{{/if}}" type="button">S'inscrire</a>
         <a href="login" class="btn btn-light ml-2 crb-navbtn {{#if onLoginPage }} disabled{{/if}}" type="button">Se connecter</a>
+        {{/if}}
     </form>
 </nav>
