@@ -9,7 +9,7 @@ import DB from "../modules/dbConn.js";
  * @returns 
  */
 export function getById(id) {
-    let user = DB.prepare('SELECT * FROM User WHERE id=?').get(id);
+    let user = DB.prepare('SELECT * FROM Users WHERE id=?').bind([id]).get();
     return user != undefined ? user : null;
 }
 
