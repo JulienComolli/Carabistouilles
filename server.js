@@ -27,7 +27,7 @@ server.get('/', (req, res) => {
     res.render('home', { session : req.session });
 });
 
-server.use('/login', LoginRoute());
+server.use('/login', LoginRoute);
 server.use('/register', RegisterRoute);
 
 server.get('/logout', (req, res) => {

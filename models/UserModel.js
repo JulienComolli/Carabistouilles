@@ -41,6 +41,40 @@ export function registerUser(username, email, password) {
     DB.prepare('INSERT INTO Users (username, email, pass) VALUES (?,?,?)').run([username, email, hashedPassword]);
 }
 
+/**
+ * Logs in the user corresponding to the given email and password
+ * @param {*} email 
+ * @param {*} password 
+ */
+export function loginUser(email, password, req) {
+
+    // If user exists
+    let id;
+    if((id = getId('email', email)) == null)
+        return
+
+    // Login the user
+    let user = getById(id)
+    req.session.authenticated = true;
+    req.session.user = {
+        id: user.id,
+        username: user.username
+    }
+
+}
+
+/**
+ * Check if the given password matches user's password
+ * @param {Number} id User's id
+ * @returns True : Password match, else False
+ */
+export function correctPassword(id, password){
+    let req = DB.prepare('SELECT pass FROM Users WHERE id=?').bind([id]).get();
+    if(req)
+        return Bcrypt.compareSync(password, req.pass);
+    
+    return false;
+}
 
 /**
  * Check if a given username is already taken
