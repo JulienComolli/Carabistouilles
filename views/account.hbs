@@ -1,1 +1,62 @@
-<h1>Account</h1>
+<div class="container my-5">
+
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <div class="card">
+                <div class="card-body row align-items-center">
+                    <div class="col-3">
+                        <img src="img/users/default.png" class="rounded-circle me-2 img-thumbnail" height="auto" width="100%">
+                    </div>
+                    <div class="col-9">
+                        <h5 class="card-title"><span class="badge rounded bg-danger text-light">Admin</span> {{ session.user.username }}</h5>
+                        <p class="card-text">Description de l'utilisateur ...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-4">
+                <div class="card-header">
+                    <div class="py-2">
+                        <h5 class="card-title">
+                            <i class="bi-heart-fill text-danger"></i>
+                            Amis
+                        </h5>
+                        <h6 class="card-subtitle text-muted fw-normal">La liste de tous vos amis !</h6>
+                    </div>
+                </div>
+                <div class="card-body">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="card mt-4 mt-lg-0">
+                <div class="card-header">
+                    <div class="py-2">
+                        <h5 class="card-title">
+                            <i class="bi-gear-fill text-secondary"></i>
+                            Paramètres
+                        </h5>
+                        <h6 class="card-subtitle text-muted fw-normal">Configurez votre compte à votre sauce !</h6>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5>Informations personnelles</h5>
+                    <hr>
+
+                    <h5>Apparence</h5>
+                    <hr>
+                    <form class="form">
+                        <h6><i class="bi-user"></i> Modifiez votre avatar</h6>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label fst-italic">Veuillez choisir un fichier</label>
+                            <input class="form-control" type="file" id="formFile">
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -35,6 +35,10 @@ server.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
+server.get('/account', (req, res) => {
+    res.render('account', { session : req.session });
+});
+
 // Launching server
 
 server.listen(SERVER_PORT, () => {
