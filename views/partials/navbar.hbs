@@ -1,27 +1,35 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="mb-0 h1 navbar-brand" href="/">Carabistouilles</a>
+    <div class="container-fluid">
+        <a class="mb-0 h1 navbar-brand" href="/">Carabistouilles</a>
 
-    <div class="collapse navbar-collapse">
-        <ul class="navbar-nav">
-            
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
-            </li>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <li class="nav-item">
-                <a class="nav-link disabled" href="/">A propos <span class="sr-only">(current)</span></a>
-            </li>
+        <div class="navbar collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
+                </li>
 
-        </ul>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="/">A propos <span class="sr-only">(current)</span></a>
+                </li>
+
+            </ul>
+
+            <div class="d-flex flex-column flex-lg-row">
+                {{#if session.authenticated}}
+                <a href="logout" class="btn btn-outline-light crb-navbtn d-block mb-2 mb-lg-0" type="button">Déconnexion</a>
+                <a href="account" class="btn btn-light ml-lg-2 crb-navbtn d-block" type="button">Mon compte</a>
+                {{else}}
+                <a href="register" class="btn btn-outline-light crb-navbtn {{#if onRegisterPage }} disabled{{/if}} d-block" type="button">S'inscrire</a>
+                <a href="login" class="btn btn-light ml-lg-2 crb-navbtn {{#if onLoginPage }} disabled{{/if}} d-block" type="button">Se connecter</a>
+                {{/if}}
+            </div>
+        </div>
+
+        
     </div>
-
-    <form class="form-inline my-2 my-lg-0">
-        {{#if session.authenticated}}
-        <a href="logout" class="btn btn-outline-light crb-navbtn" type="button">Déconnexion</a>
-        <a href="account" class="btn btn-light ml-2 crb-navbtn" type="button">Mon compte</a>
-        {{else}}
-        <a href="register" class="btn btn-outline-light crb-navbtn {{#if onRegisterPage }} disabled{{/if}}" type="button">S'inscrire</a>
-        <a href="login" class="btn btn-light ml-2 crb-navbtn {{#if onLoginPage }} disabled{{/if}}" type="button">Se connecter</a>
-        {{/if}}
-    </form>
 </nav>
