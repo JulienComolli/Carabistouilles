@@ -1,23 +1,11 @@
 html, body {
     min-height: 100vh;
 }
-.crb-center-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-.crb-mt-sm {
-    margin-top: 60px;
-}
+
 .crb-form {
     border: 1px solid #cacacaca;
     border-radius: 20px;
     padding: 20px;
-}
-
-.crb-border-dark {
-    border: 1px solid #bebebebe;
 }
 
 .crb-navbtn {

@@ -1,10 +1,10 @@
-<div class="jumbotron jumbotron-fluid">
-	<div class="container">
+<div class="container py-5">
+	<div class="p-5 bg-light rounded-3 text-center">
 		{{#if session.authenticated }}
-		<h1 class="display-4">Bonjour {{ session.user.username }} !</h1>
+		<h1 class="display-5 fw-bold">Bonjour {{ session.user.username }} !</h1>
 		{{else}}
-		<h1 class="display-4">Bienvenue sur Carabistouilles !</h1>
+		<h1 class="display-5 fw-bold">Bienvenue sur Carabistouilles !</h1>
 		{{/if}}
-		<p class="lead">Un petit site sympa pour passer le temps avé les collègues !</p>
+		<p class="fs-4 fw-thin text-secondary">Un petit site sympa pour passer le temps avé les collègues !</p>
 	</div>
 </div>

@@ -1,6 +1,9 @@
-<main class="crb-center-content crb-mt-sm">
-    <h1 class="mb-4">Connexion</h1>
-    <form class="form-signin crb-form" style="width: 600px; max-width: 95vw;" method="POST" action="">
+<main class="container py-5">
+
+    <h1 class="mb-4 text-center">Connexion</h1>
+
+
+    <form class="mx-auto crb-form" style="width: 100%; max-width: 600px;" method="POST" action="">
 
         <img class="mb-4" src="./img/logo.png" alt="" width="120" height="120" style="margin: 0 auto; display: block;">
 
@@ -8,23 +11,29 @@
 
         <div class="form-group">
             <label for="inputEmail">Adresse Email</label>
-            <input type="email" name="email" id="inputEmail" 
-                class="form-control {{#if (isInvalid 'email' errors)}}is-invalid{{/if}}"
-                placeholder="Votre email" value="{{ inputValues.email }}">
+            <input type="email" name="email" id="inputEmail"
+                class="form-control {{#if (isInvalid 'email' errors)}}is-invalid{{/if}}" 
+                placeholder="Votre email"
+                value="{{ inputValues.email }}">
         </div>
 
         <div class="form-group">
             <label for="passwordInput">Mot de passe</label>
             <input type="password" name="password" id="passwordInput"
-            class="form-control {{#if (isInvalid 'password' errors)}}is-invalid{{/if}}" 
-            placeholder="Entrez votre mot de passe">
+                class="form-control {{#if (isInvalid 'password' errors)}}is-invalid{{/if}}"
+                placeholder="Entrez votre mot de passe">
         </div>
-        <button class="btn btn-lg btn-dark btn-block mt-4" type="submit">Se connecter</button>
 
-        <small class="form-text text-muted mt-2"><em>Pas de compte ?</em></small>
-        <a class="btn btn-lg btn-light btn-block crb-border-dark" href="register">S'inscrire</a>
+        <div class="d-grid col-6 mx-auto mt-4 gap-2">
+            <button class="btn btn-dark" type="submit">Se connecter</button>
 
-        <p class="mt-5 mb-3 text-muted">&copy; Carabistouilles - Page de connexion</p>
+            <p class="mt-2 text-center">
+                Pas de compte ? <a href="/register">Inscrivez-vous !</a>
+            </p>   
+        </div>
+
+        <p class="mt-3 mb-2 text-muted">&copy; Carabistouilles - Page de connexion</p>
 
     </form>
+
 </main>
