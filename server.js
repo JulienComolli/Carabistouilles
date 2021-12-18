@@ -1,7 +1,6 @@
 // Node Modules Imports
 import Express from "express";
 
-
 // Custom Imports
 import { SERVER_PORT } from "./config/public-config.js";
 
@@ -10,11 +9,13 @@ import handleBars from "./modules/handleBars.js";
 
 import LoginRoute from "./routes/login-route.js";
 import RegisterRoute from "./routes/register-route.js";
+import AccountRoute from './routes/accountRoute.js';
 
-
+import './models/UserModel.js';
 
 // Init Express server
 const server = Express();
+
 server.use(Express.static('public'));
 server.use(Express.urlencoded({ extended: true })); // Middleware for handling forms
 
@@ -29,14 +30,11 @@ server.get('/', (req, res) => {
 
 server.use('/login', LoginRoute);
 server.use('/register', RegisterRoute);
+server.use('/account', AccountRoute);
 
 server.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
-});
-
-server.get('/account', (req, res) => {
-    res.render('account', { session : req.session });
 });
 
 // Launching server

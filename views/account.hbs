@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="card-body row align-items-center">
                     <div class="col-3">
-                        <img src="img/users/default.png" class="rounded-circle me-2 img-thumbnail" height="auto" width="100%">
+                        <img src="img/users/{{ picture_path }}" class="rounded-circle me-2 img-thumbnail" height="auto" width="100%">
                     </div>
                     <div class="col-9">
                         <h5 class="card-title"><span class="badge rounded bg-danger text-light">Admin</span> {{ session.user.username }}</h5>
@@ -45,11 +45,20 @@
 
                     <h5>Apparence</h5>
                     <hr>
-                    <form class="form">
+                    {{> errorDisplayer }}
+                    <form class="form" method="POST" action="" enctype="multipart/form-data">
+
                         <h6><i class="bi-user"></i> Modifiez votre avatar</h6>
                         <div class="mb-3">
                             <label for="formFile" class="form-label fst-italic">Veuillez choisir un fichier</label>
-                            <input class="form-control" type="file" id="formFile">
+                            <input type="file" name="userimg" id="formFile"
+                                class="form-control {{#if (isInvalid 'userimg' errorList)}}is-invalid{{/if}}"
+                            >
+                        </div>
+
+                        <div class="mb-3 row justify-content-around">
+                            <button class="btn btn-primary col-4" type="submit">Upload</button>
+                            <button class="btn btn-outline-danger col-4" type="reset">Annuler</button>
                         </div>
 
                     </form>

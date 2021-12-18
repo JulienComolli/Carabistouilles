@@ -1,7 +1,10 @@
 import Bcrypt from "bcrypt";
 const SALT_ROUND = 10;
+import { DEFAULT_USER_PICTUREPATH } from '../config/public-config.js';
 
 import DB from "../modules/dbConn.js";
+ 
+// Getters
 
 /**
  * 
@@ -29,6 +32,25 @@ export function getByField(field, value) {
     return user != undefined ? user : null;
 }
 
+export function getPicturePath(id) {
+    let req = DB.prepare('SELECT picture_path FROM Users WHERE id=?').bind([id]).get();
+    return req.picture_path != null ? req.picture_path : DEFAULT_USER_PICTUREPATH;
+}
+
+/**
+ * Set the profile picture path (Null for default)
+ * @param {*} id User id
+ * @param {*} path Path of the picture in the user pics folder
+ */
+export function setPicturePath(id, path = NULL) {
+    if(path == null || path == undefined || path == 'default')
+        path = 'NULL';
+
+    let res = DB.prepare('UPDATE Users SET picture_path=? WHERE id=?').run([path, id]);
+}
+
+// Register
+
 /**
  * 
  * @param {String} username Username of the new user
@@ -40,6 +62,8 @@ export function registerUser(username, email, password) {
     const hashedPassword = Bcrypt.hashSync(password, Bcrypt.genSaltSync(SALT_ROUND));
     DB.prepare('INSERT INTO Users (username, email, pass) VALUES (?,?,?)').run([username, email, hashedPassword]);
 }
+
+// Login
 
 /**
  * Logs in the user corresponding to the given email and password
@@ -62,6 +86,8 @@ export function loginUser(email, password, req) {
     }
 
 }
+
+// Basic checks
 
 /**
  * Check if the given password matches user's password
