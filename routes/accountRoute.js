@@ -3,16 +3,12 @@
  * */
 import Express from 'express';
 import fileUpload from 'express-fileupload';
-import fs from 'fs';
-import mmmagic from 'mmmagic';
-import { getRandomString } from '../modules/utils.js';
 
-import { DEFAULT_USER_PICTUREPATH, AUTHORIZED_IMG_TYPES } from '../config/publicConfig.js';
 import { MAX_IMG_SIZE } from '../config/accountConfig.js';
-import { getById, getPicturePath, setPicturePath, deleteUser } from '../models/UserModel.js';
+import { getById, getPicturePath, deleteUser } from '../models/UserModel.js';
+import { changeImage } from '../controllers/AccountController.js'
 
 const AccountRoute = Express.Router();
-const Magic = new mmmagic.Magic(mmmagic.MAGIC_MIME_TYPE); // MIME Type middleware
 
 // Authentication check (middleware)
 AccountRoute.use('', (req, res, next) => {
@@ -38,43 +34,16 @@ AccountRoute.get('', (req, res) => {
 
 AccountRoute.post('/', (req, res) => {
 
-    // Missing files
+    // Missing inputs
     if (!req.files?.userimg)
         return res.redirect('/account');
     
-    // Real MIME Type (Via mmmagic middleware)
-    var extension = '.';
-    
-    Magic.detect(req.files.userimg.data, (err, type) => {
-        if (err) return res.redirect('/account');
+    changeImage(req.session.user.id, req.files.userimg, (err) => {
 
-        if (Object.keys(AUTHORIZED_IMG_TYPES).includes(type)) 
-            extension = AUTHORIZED_IMG_TYPES[type];
-        else 
-            return res.render('account', { session: req.session, errors: [{ message: 'Type de fichier interdit !', input: 'userimg' }], picture_path: getPicturePath(req.session.user.id) });
+        if(err)
+            return res.render('account', { session: req.session, errors: err?.errors, picture_path: getPicturePath(req.session.user.id)});
 
-        // Generating a random 12 chars name + userid
-        let newPic = getRandomString(12) + req.session.user.id + extension;
-
-        // Move image to user profile picture
-        req.files.userimg.mv('./public/img/users/' + newPic, (err) => {
-            if (err) {
-                console.error('Error while moving the file !');
-                return res.render('/account', { session: req.session, errors: [{ message: 'An error occured while uploading your image !' }], picture_path: getPicturePath(req.session.user.id) });
-            }
-
-            // Delete old pic & change DB record
-            let oldPic = getPicturePath(req.session.user.id);
-            if (oldPic != DEFAULT_USER_PICTUREPATH) {
-                fs.unlink('./public/img/users/' + oldPic, (err) => {
-                    if (err)
-                        return console.error('Error while deleting old picture !');
-                });
-            }
-            setPicturePath(req.session.user.id, newPic);
-        });
-
-        res.redirect('account');
+        return res.redirect('account');
     });
 
 });
@@ -94,6 +63,10 @@ AccountRoute.post('/delete', (req, res) => {
         res.redirect('/account');
     }
     
-})
+});
+
+AccountRoute.post('/changepwd', (req, res) => {
+    
+});
 
 export default AccountRoute;
