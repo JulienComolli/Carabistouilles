@@ -66,15 +66,13 @@ function checkMissingInputs(body) {
 function validateInputs(body) {
     let errors = [];
 
-    if (body.username.length < USERNAME_MIN_SIZE || body.username.length > USERNAME_MAX_SIZE) {
+    if (body.username.length < USERNAME_MIN_SIZE || body.username.length > USERNAME_MAX_SIZE)
         errors.push({
             message: `Votre nom d'utilisateur doit être compris entre ${USERNAME_MIN_SIZE} et ${USERNAME_MAX_SIZE} caractères !`, input: 'username'
         });
-    }
-
-    if (body.email != body.emailConfirm) {
+    
+    if (body.email != body.emailConfirm)
         errors.push({ message: 'Les adresses email ne correspondent pas !', input: 'emailConfirm' });
-    }
 
     // If there is errors we end the function before processing the Regex
     if (errors.length != 0)
@@ -86,9 +84,10 @@ function validateInputs(body) {
     if (body.password.length > PWD_MAX_LEN || !body.password.match(PWD_REGEX)) {
         errors.push({
             message:
-                `Le mot de passe doit contenir au moins ${PWD_MIN_LEN} caractères, un nombre et un caractère spécial !`,
-            input: 'passwordConfirm'
+                `Le mot de passe doit contenir au moins ${PWD_MIN_LEN} caractères, une majuscule, un nombre et un caractère spécial !`,
+            input: 'password'
         });
+        errors.push({ message: '', input: 'passwordConfirm'})
         return { type: 'invalidInputs', errors };
     }
 
