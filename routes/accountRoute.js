@@ -5,9 +5,11 @@ import Express from 'express';
 import fileUpload from 'express-fileupload';
 import fs from 'fs';
 import mmmagic from 'mmmagic';
+import { getRandomString } from '../modules/utils.js';
 
-import { MAX_IMG_SIZE, DEFAULT_USER_PICTUREPATH, AUTHORIZED_IMG_TYPES } from '../config/public-config.js';
-import { getById, getPicturePath, setPicturePath, deleteUser } from "../models/UserModel.js";
+import { DEFAULT_USER_PICTUREPATH, AUTHORIZED_IMG_TYPES } from '../config/publicConfig.js';
+import { MAX_IMG_SIZE } from '../config/accountConfig.js';
+import { getById, getPicturePath, setPicturePath, deleteUser } from '../models/UserModel.js';
 
 const AccountRoute = Express.Router();
 const Magic = new mmmagic.Magic(mmmagic.MAGIC_MIME_TYPE); // MIME Type middleware
@@ -28,20 +30,6 @@ AccountRoute.use(fileUpload({
     abortOnLimit: true,
     preserveExtension: true
 }));
-
-function genRandomPictureName(length = 12) {
-
-    let alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    alphabet += alphabet.toLowerCase();
-    alphabet += '0123456789';
-
-    let randomString = '';
-
-    for (let i = 0; i < length; i++)
-        randomString += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-
-    return randomString;
-}
 
 AccountRoute.get('', (req, res) => {
     let user = getById(req.session.user.id);
@@ -66,7 +54,7 @@ AccountRoute.post('/', (req, res) => {
             return res.render('account', { session: req.session, errors: [{ message: 'Type de fichier interdit !', input: 'userimg' }], picture_path: getPicturePath(req.session.user.id) });
 
         // Generating a random 12 chars name + userid
-        let newPic = genRandomPictureName(12) + req.session.user.id + extension;
+        let newPic = getRandomString(12) + req.session.user.id + extension;
 
         // Move image to user profile picture
         req.files.userimg.mv('./public/img/users/' + newPic, (err) => {

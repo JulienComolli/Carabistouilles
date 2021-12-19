@@ -1,4 +1,4 @@
-import ExpressHandlebars from "express-handlebars";
+import ExpressHandlebars from 'express-handlebars';
 
 const handleBarsOpts = {
     extname: '.hbs',

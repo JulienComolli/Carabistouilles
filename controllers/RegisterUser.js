@@ -1,5 +1,5 @@
-import * as UserModel from "../models/UserModel.js";
-import { PWD_REGEX, PWD_MIN_LEN, PWD_MAX_LEN, USERNAME_MIN_SIZE, USERNAME_MAX_SIZE } from "../config/register-config.js";
+import * as UserModel from '../models/UserModel.js';
+import { PWD_REGEX, PWD_MIN_LEN, PWD_MAX_LEN, USERNAME_MIN_SIZE, USERNAME_MAX_SIZE } from '../config/accountConfig.js';
 
 export default function (body) {
     var errs;

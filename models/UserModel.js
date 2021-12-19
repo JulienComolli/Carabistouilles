@@ -1,6 +1,6 @@
 import Bcrypt from "bcrypt";
 const SALT_ROUND = 10;
-import { DEFAULT_USER_PICTUREPATH } from '../config/public-config.js';
+import { DEFAULT_USER_PICTUREPATH } from '../config/publicConfig.js';
 
 import DB from "../modules/dbConn.js";
  

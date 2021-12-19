@@ -1,3 +1,4 @@
+export const MAX_IMG_SIZE =  1 * 1024* 1024;
 export const EMAIL_MAX_SIZE = 320
 export const USERNAME_MAX_SIZE = 20
 export const USERNAME_MIN_SIZE = 4

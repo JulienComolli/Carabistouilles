@@ -2,13 +2,13 @@
 import Express from "express";
 
 // Custom Imports
-import { SERVER_PORT } from "./config/public-config.js";
+import { SERVER_PORT } from "./config/publicConfig.js";
 
 import session from "./modules/session.js"
 import handleBars from "./modules/handleBars.js";
 
-import LoginRoute from "./routes/login-route.js";
-import RegisterRoute from "./routes/register-route.js";
+import LoginRoute from "./routes/loginRoute.js";
+import RegisterRoute from "./routes/registerRoute.js";
 import AccountRoute from './routes/accountRoute.js';
 
 import './models/UserModel.js';

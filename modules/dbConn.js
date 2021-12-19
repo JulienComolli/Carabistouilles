@@ -1,7 +1,7 @@
-import Database from "better-sqlite3";
-import fs from "fs";
+import Database from 'better-sqlite3';
+import fs from 'fs';
 
-import { DBNAME } from "../config/public-config.js";
+import { DBNAME } from '../config/publicConfig.js';
 
 var DB;
 

@@ -1,4 +1,4 @@
-import ExpressSession from "express-session";
+import ExpressSession from 'express-session';
 
 const SessionStore = new ExpressSession.MemoryStore();
 const SESSION_SECRET_KEY = "notverysecretkey"
