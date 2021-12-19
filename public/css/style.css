@@ -1,7 +1,19 @@
 html, body {
     min-height: 100vh;
 }
-
+#nav-carabistouilles img {
+    width: 40px;
+    margin-right: 7px;
+    margin-bottom: 4px;
+}
+#nav-carabistouilles {
+    line-height: 45px;
+}
+.pfp-100 {
+    height: 100px;
+    width: 100px;
+    overflow: hidden;
+}
 .crb-form {
     border: 1px solid #cacacaca;
     border-radius: 20px;

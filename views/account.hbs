@@ -5,10 +5,13 @@
             <div class="card">
                 <div class="card-body row align-items-center">
                     <div class="col-3">
-                        <img src="img/users/{{ picture_path }}" class="rounded-circle me-2 img-thumbnail" height="auto" width="100%">
+                        <div class="pfp-100 rounded-circle circle-img me-2 img-thumbnail">
+                            <img src="img/users/{{ picture_path }}">
+                        </div>
                     </div>
                     <div class="col-9">
-                        <h5 class="card-title"><span class="badge rounded bg-danger text-light">Admin</span> {{ session.user.username }}</h5>
+                        <h5 class="card-title"><span class="badge rounded bg-danger text-light">Admin</span> {{
+                            session.user.username }}</h5>
                         <p class="card-text">Description de l'utilisateur ...</p>
                     </div>
                 </div>
@@ -24,7 +27,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    
+
                 </div>
             </div>
         </div>
@@ -52,8 +55,7 @@
                         <div class="mb-3">
                             <label for="formFile" class="form-label fst-italic">Veuillez choisir un fichier</label>
                             <input type="file" name="userimg" id="formFile"
-                                class="form-control {{#if (isInvalid 'userimg' errorList)}}is-invalid{{/if}}"
-                            >
+                                class="form-control {{#if (isInvalid 'userimg' errorList)}}is-invalid{{/if}}">
                         </div>
 
                         <div class="mb-3 row justify-content-around">

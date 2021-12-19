@@ -16,8 +16,8 @@ import './models/UserModel.js';
 // Init Express server
 const server = Express();
 
+server.use(Express.urlencoded({ extended: true, limit: '20kb'})); // Middleware for handling forms
 server.use(Express.static('public'));
-server.use(Express.urlencoded({ extended: true })); // Middleware for handling forms
 
 server.use(session);
 server.engine('hbs', handleBars);
