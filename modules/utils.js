@@ -14,5 +14,5 @@ export function getRandomString(length = 12) {
 }
 
 export function validatePassword(password) {
-    return password.length > PWD_MAX_LEN || !password.match(PWD_REGEX)
+    return password.length < PWD_MAX_LEN && password.match(PWD_REGEX)
 }
