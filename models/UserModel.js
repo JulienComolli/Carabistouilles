@@ -46,7 +46,7 @@ export function setPicturePath(id, path = NULL) {
     if(path == null || path == undefined || path == 'default')
         path = 'NULL';
 
-    let res = DB.prepare('UPDATE Users SET picture_path=? WHERE id=?').run([path, id]);
+    DB.prepare('UPDATE Users SET picture_path=? WHERE id=?').run([path, id]);
 }
 
 // Register
@@ -116,6 +116,11 @@ export function correctPassword(id, password){
     return false;
 }
 
+export function updatePassword(id, newPassword) {
+    DB.prepare('UPDATE Users SET pass=? WHERE id=?').run([hashPassword(newPassword), id]);
+    return true;
+}
+
 /**
  * Check if a given username is already taken
  * @param {String} username 
@@ -139,4 +144,9 @@ export function emailTaken(email) {
 export function getAll() {
     let res = DB.prepare('SELECT * FROM Users').all();
     return (res != undefined || null) ? res : null;
+}
+
+
+function hashPassword(password) {
+    return Bcrypt.hashSync(password, Bcrypt.genSaltSync(SALT_ROUND));
 }
