@@ -74,9 +74,9 @@ AccountRoute.post('/changepwd', (req, res) => {
     console.log(oldPass)
     changePassword(usrId, oldPass, newPass, newPassConfirm, (err) => {
         if(err)
-            res.send(err)
+            res.render('account', { session: req.session, showPassModal: "changePasswordModal", errors: err?.errors })
         else
-            res.send('Mot de passe changé !'); // avec les notifications succès
+            res.render('account', { session: req.session, showPassModal: null }); // avec les notifications succès
     });
 
 });

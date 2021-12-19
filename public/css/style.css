@@ -14,6 +14,12 @@ html, body {
     width: 100px;
     overflow: hidden;
 }
+
+.pfp-100 img {
+    height: 100px;
+    width: 100px;
+}
+
 .crb-form {
     border: 1px solid #cacacaca;
     border-radius: 20px;
