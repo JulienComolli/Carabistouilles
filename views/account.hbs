@@ -30,6 +30,19 @@
 
                 </div>
             </div>
+            <div class="card mt-4">
+                <div class="card-header">
+                    <div class="py-2">
+                        <h5 class="card-title">
+                            <i class="bi-bar-chart-fill text-warning"></i>
+                            Statistiques
+                        </h5>
+                        <h6 class="card-subtitle text-muted fw-normal">Vos statistiques sur tous les jeux !</h6>
+                    </div>
+                </div>
+                <div class="card-body">
+                </div>
+            </div>
         </div>
         <div class="col-12 col-lg-6">
             <div class="card mt-4 mt-lg-0">
@@ -69,8 +82,8 @@
                     <hr>
                     <div>
                         <div class="row align-items-center justify-content-center">
-                            <div class="col-12 col-lg-6">Supprimer votre compte</div>
-                            <div class="col-12 col-lg-6">
+                            <div class="col-12 col-lg-6 text-center">Supprimer votre compte</div>
+                            <div class="col-12 col-lg-6 text-center">
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
                                     Supprimer mon compte
                                 </button>
@@ -98,13 +111,22 @@
                 <div class="modal-body">
 
                     <div class="mb-3">
-                        <label for="formFile" class="form-label fst-italic">Veuillez indiquer votre mot de passe pour confirmer</label>
-                        <input type="password" name="password" id="formPassword"
+                        <label for="deleteAccountFormPassword" class="form-label fst-italic">Veuillez indiquer votre mot de passe pour confirmer</label>
+                        <input type="password" name="password" id="deleteAccountFormPassword"
                                 class="form-control {{#if (isInvalid 'password' errorList)}}is-invalid{{/if}}"
                             >
                     </div>
 
-                    Attention tout de même, comme nous respectons le RGPD, toutes vos données serons <strong>supprimées définitivement</strong> !
+                    <div class="alert alert-danger d-flex align-items-center">
+                        <div>
+                            <i class="bi bi-exclamation-triangle" style="font-size: 2rem"></i>
+                        </div>
+                        <div class="px-3">
+                            Attention, comme nous respectons le RGPD, toutes vos données seront <strong>supprimées définitivement</strong> !
+                        </div>
+                    </div>
+                    
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
