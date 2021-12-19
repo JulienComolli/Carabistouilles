@@ -9,6 +9,11 @@ html, body {
 #nav-carabistouilles {
     line-height: 45px;
 }
+.pfp {
+    height: 100px;
+    width: 100px;
+    overflow: hidden;
+}
 .crb-form {
     border: 1px solid #cacacaca;
     border-radius: 20px;
