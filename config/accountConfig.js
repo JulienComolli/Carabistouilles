@@ -3,7 +3,7 @@ export const EMAIL_MAX_SIZE = 320
 export const USERNAME_MAX_SIZE = 20
 export const USERNAME_MIN_SIZE = 4
 export const PWD_MIN_LEN = 7
-export const PWD_MAX_LEN = 64
+export const PWD_MAX_LEN = 128
 export const PWD_REGEX = genRegex();
 
 function genRegex() {
