@@ -1,5 +1,6 @@
 import * as UserModel from '../models/UserModel.js';
-import { PWD_REGEX, PWD_MIN_LEN, PWD_MAX_LEN, USERNAME_MIN_SIZE, USERNAME_MAX_SIZE } from '../config/accountConfig.js';
+import { PWD_MIN_LEN, USERNAME_MIN_SIZE, USERNAME_MAX_SIZE } from '../config/accountConfig.js';
+import { validatePassword } from '../modules/utils.js';
 
 export default function (body) {
     var errs;
@@ -81,7 +82,7 @@ function validateInputs(body) {
     if (body.password != body.passwordConfirm)
         errors.push({ message: 'Les mots de passe ne correspondent pas !', input: 'passwordConfirm' });
     
-    if (body.password.length > PWD_MAX_LEN || !body.password.match(PWD_REGEX)) {
+    if (validatePassword(body.password)) {
         errors.push({
             message:
                 `Le mot de passe doit contenir au moins ${PWD_MIN_LEN} caractères, une majuscule, un nombre et un caractère spécial !`,
