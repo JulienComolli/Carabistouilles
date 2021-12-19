@@ -7,7 +7,7 @@ import fs from 'fs';
 import mmmagic from 'mmmagic';
 
 import { MAX_IMG_SIZE, DEFAULT_USER_PICTUREPATH, AUTHORIZED_IMG_TYPES } from '../config/public-config.js';
-import { getById, getPicturePath, setPicturePath } from "../models/UserModel.js";
+import { getById, getPicturePath, setPicturePath, deleteUser } from "../models/UserModel.js";
 
 const AccountRoute = Express.Router();
 const Magic = new mmmagic.Magic(mmmagic.MAGIC_MIME_TYPE); // MIME Type middleware
@@ -90,5 +90,22 @@ AccountRoute.post('/', (req, res) => {
     });
 
 });
+
+AccountRoute.post('/delete', (req, res) => {
+    // Check for missing input
+    if(req.body?.password == "")
+        return res.redirect('/account');
+    
+    try{
+        console.log('Demande de suppression du compte #' + req.session.user.id + ' (' + req.session.user.username + ')');
+        deleteUser(req.session.user.id, req.body.password);
+        console.log('Compte #' + req.session.user.id + ' supprimé (' + req.session.user.username  + ')')
+        req.session.destroy()
+        res.redirect('/');
+    }catch(err){
+        res.redirect('/account');
+    }
+    
+})
 
 export default AccountRoute;

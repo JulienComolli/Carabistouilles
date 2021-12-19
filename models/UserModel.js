@@ -87,6 +87,20 @@ export function loginUser(email, password, req) {
 
 }
 
+// Account deletion
+
+/**
+ * Delete the user's account if the password is correct
+ * @param {number} id 
+ * @param {string} password 
+ */
+export function deleteUser(id, password){
+    if(!correctPassword(id, password))
+        throw Error('Incorrect password')
+    
+    DB.prepare('DELETE FROM Users WHERE id=?;').run([id])
+}
+
 // Basic checks
 
 /**
