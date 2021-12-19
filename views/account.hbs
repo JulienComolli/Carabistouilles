@@ -84,55 +84,117 @@
                         <div class="row align-items-center justify-content-center">
                             <div class="col-12 col-lg-6 text-center">Supprimer votre compte</div>
                             <div class="col-12 col-lg-6 text-center">
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#deleteAccountModal">
                                     Supprimer mon compte
                                 </button>
                             </div>
+                            <div class="row align-items-center justify-content-center mt-2">
+                                <div class="col-12 col-lg-6 text-center">Change de mot de passe</div>
+                                <div class="col-12 col-lg-6 text-center">
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#changePasswordModal">
+                                        Changer de mot de passe
+                                    </button>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
-                    
                 </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Delete account modal -->
+    <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModal"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" action="/account/delete">
+                    <div class="modal-header d-flex flex-column">
+                        <h4>Suppression du compte</h4>
+                        <br>
+                        <p>Nous sommes tristes de vous voir partir !</p>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+                            <label for="deleteAccountFormPassword" class="form-label fst-italic">Veuillez indiquer votre
+                                mot de passe pour confirmer</label>
+                            <input type="password" name="password" id="deleteAccountFormPassword"
+                                class="form-control {{#if (isInvalid 'password' errorList)}}is-invalid{{/if}}">
+                        </div>
+
+                        <div class="alert alert-danger d-flex align-items-center">
+                            <div>
+                                <i class="bi bi-exclamation-triangle" style="font-size: 2rem"></i>
+                            </div>
+                            <div class="px-3">
+                                Attention, comme nous respectons le RGPD, toutes vos données seront <strong>supprimées
+                                    définitivement</strong> !
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
-</div>
 
-<!-- Delete account modal -->
-<div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form method="POST" action="/account/delete">
-                <div class="modal-header d-flex flex-column">
-                    <h4>Suppression du compte</h4>
-                    <br>
-                    <p>Nous sommes tristes de vous voir partir !</p>
-                </div>
-                <div class="modal-body">
-
-                    <div class="mb-3">
-                        <label for="deleteAccountFormPassword" class="form-label fst-italic">Veuillez indiquer votre mot de passe pour confirmer</label>
-                        <input type="password" name="password" id="deleteAccountFormPassword"
-                                class="form-control {{#if (isInvalid 'password' errorList)}}is-invalid{{/if}}"
-                            >
+    <!-- Change password modal -->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModal"
+        aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" action="/account/changepwd">
+                    <div class="modal-header d-flex flex-column">
+                        <h4>Changement de mot de passe</h4>
+                        <br>
+                        <p>Veuillez remplir le formulaire pour changer votre mot de passe.</p>
                     </div>
+                    <div class="modal-body">
 
-                    <div class="alert alert-danger d-flex align-items-center">
-                        <div>
-                            <i class="bi bi-exclamation-triangle" style="font-size: 2rem"></i>
+                        <div class="mb-3">
+                            <label for="changePasswordModal" class="form-label">Mot de passe actuel</label>
+                            <input type="password" name="oldPassword"
+                                class="form-control {{#if (isInvalid 'password' errorList)}}is-invalid{{/if}} mb-3">
+
+                            <label for="changePasswordModal" class="form-label mt-3">Nouveau mot de passe</label>
+                            <input type="password" name="newPassword"
+                                class="form-control {{#if (isInvalid 'password' errorList)}}is-invalid{{/if}}">
+
+
+                            <label for="changePasswordModal" class="form-label">Confirmation nouveau mot de
+                                passe</label>
+                            <input type="password" name="newPasswordConfirm"
+                                class="form-control {{#if (isInvalid 'password' errorList)}}is-invalid{{/if}}">
                         </div>
-                        <div class="px-3">
-                            Attention, comme nous respectons le RGPD, toutes vos données seront <strong>supprimées définitivement</strong> !
+
+                        <div class="alert alert-primary d-flex align-items-center">
+                            <div>
+                                <i class="bi bi-info" style="font-size: 2rem"></i>
+                            </div>
+                            <div class="px-3">
+                                Votre mot de passe doit être suffisement long, contenir au moins une majuscule, un
+                                nombre et un caractère spécial.
+                            </div>
                         </div>
+
+
                     </div>
-                    
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <button type="submit" class="btn btn-danger">Supprimer</button>
-                </div>
-            </form>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-success">Confirmer</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>

@@ -6,7 +6,7 @@ import fileUpload from 'express-fileupload';
 
 import { MAX_IMG_SIZE } from '../config/accountConfig.js';
 import { getById, getPicturePath, deleteUser } from '../models/UserModel.js';
-import { changeImage } from '../controllers/AccountController.js'
+import { changeImage, changePassword } from '../controllers/AccountController.js'
 
 const AccountRoute = Express.Router();
 
@@ -37,11 +37,11 @@ AccountRoute.post('/', (req, res) => {
     // Missing inputs
     if (!req.files?.userimg)
         return res.redirect('/account');
-    
+
     changeImage(req.session.user.id, req.files.userimg, (err) => {
 
-        if(err)
-            return res.render('account', { session: req.session, errors: err?.errors, picture_path: getPicturePath(req.session.user.id)});
+        if (err)
+            return res.render('account', { session: req.session, errors: err?.errors, picture_path: getPicturePath(req.session.user.id) });
 
         return res.redirect('account');
     });
@@ -50,23 +50,35 @@ AccountRoute.post('/', (req, res) => {
 
 AccountRoute.post('/delete', (req, res) => {
     // Check for missing input
-    if(req.body?.password == "")
+    if (req.body?.password == "")
         return res.redirect('/account');
-    
-    try{
+
+    try {
         console.log('Demande de suppression du compte #' + req.session.user.id + ' (' + req.session.user.username + ')');
         deleteUser(req.session.user.id, req.body.password);
-        console.log('Compte #' + req.session.user.id + ' supprimé (' + req.session.user.username  + ')')
+        console.log('Compte #' + req.session.user.id + ' supprimé (' + req.session.user.username + ')')
         req.session.destroy()
         res.redirect('/');
-    }catch(err){
+    } catch (err) {
         res.redirect('/account');
     }
-    
+
 });
 
 AccountRoute.post('/changepwd', (req, res) => {
-    
+
+    let usrId = req.session.user.id;
+    let oldPass = req.body.oldPassword;
+    let newPass = req.body.newPassword;
+    let newPassConfirm = req.body.newPasswordConfirm;
+    console.log(oldPass)
+    changePassword(usrId, oldPass, newPass, newPassConfirm, (err) => {
+        if(err)
+            res.send(err)
+        else
+            res.send('Mot de passe changé !'); // avec les notifications succès
+    });
+
 });
 
 export default AccountRoute;
