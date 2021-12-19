@@ -2,8 +2,6 @@ import * as UserModel from "../models/UserModel.js";
 import { PWD_REGEX, PWD_MIN_LEN, PWD_MAX_LEN, USERNAME_MIN_SIZE, USERNAME_MAX_SIZE } from "../config/register-config.js";
 
 export default function (body) {
-    console.log(body)
-
     var errs;
 
     // Si l'une des deux fonctions renvoie des erreurs on les jette

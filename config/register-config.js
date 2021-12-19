@@ -6,7 +6,7 @@ export const PWD_MAX_LEN = 64
 export const PWD_REGEX = genRegex();
 
 function genRegex() {
-    let reg = '/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{PWD_MIN_LEN,PWD_MAX_LEN}$/';
+    let reg = '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{PWD_MIN_LEN,PWD_MAX_LEN}$';
     // Replacing placeholders
     reg = reg.replace('PWD_MAX_LEN', PWD_MAX_LEN); 
     reg = reg.replace('PWD_MIN_LEN', PWD_MIN_LEN);
