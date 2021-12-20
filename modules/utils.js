@@ -1,4 +1,5 @@
-import { PWD_MAX_LEN, PWD_REGEX } from '../config/accountConfig.js'
+import { EMAIL_REGEX, PWD_MAX_LEN, PWD_REGEX } from '../config/accountConfig.js'
+
 export function getRandomString(length = 12) {
 
     let alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -15,4 +16,8 @@ export function getRandomString(length = 12) {
 
 export function validatePassword(password) {
     return password.length < PWD_MAX_LEN && password.match(PWD_REGEX)
+}
+
+export function validateEmail(email) {
+    return email.match(EMAIL_REGEX);
 }

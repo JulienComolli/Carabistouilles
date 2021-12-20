@@ -1,6 +1,6 @@
 import * as UserModel from '../models/UserModel.js';
 import { PWD_MIN_LEN, USERNAME_MIN_SIZE, USERNAME_MAX_SIZE } from '../config/accountConfig.js';
-import { validatePassword } from '../modules/utils.js';
+import { validateEmail, validatePassword } from '../modules/utils.js';
 
 export default function (body) {
     var errs;
@@ -75,6 +75,9 @@ function validateInputs(body) {
     if (body.email != body.emailConfirm)
         errors.push({ message: 'Les adresses email ne correspondent pas !', input: 'emailConfirm' });
 
+    if (!validateEmail(body.email))
+        errors.push({ message: 'Veuillez saisir un email valide !', input: 'emailConfirm' });
+    
     // If there is errors we end the function before processing the Regex
     if (errors.length != 0)
         return errors.length == 0 ? null : { type: 'invalidInputs', errors };
