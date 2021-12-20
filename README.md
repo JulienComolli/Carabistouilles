@@ -12,8 +12,9 @@ Our webserver is easy to setup.
 2. Install [NPM](https://www.npmjs.com/)
 3. Clone this repository
 4. Run `npm install`, this will automatically install node packages
-5. Run the server with `npm start`, the first time it will create the database
-6. *(Optional)* `npm run populatedb`
+5. Configure the server port in `config/publicConfig.js`, *(default is 8000)*
+6. Run the server with `npm start`, SQLite database will be created on the first launch in the db directory
+7. *(Optional)* `npm run populatedb` to add data to the database
 
 ## Tech stack
 
