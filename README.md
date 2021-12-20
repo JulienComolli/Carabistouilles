@@ -1,6 +1,6 @@
 # Carabistouilles
 
-Simple web platform for online games, in the context of a University Project.
+Simple web platform for online games, in the context of an University Project.
 
 Our goal is to add games easily in the future, in the form of modules. The project wants us to focus first on the back-end side.
 
@@ -15,6 +15,7 @@ Our webserver is easy to setup.
 5. Configure the server port in `config/publicConfig.js`, *(default is 8000)*
 6. Run the server with `npm start`, SQLite database will be created on the first launch in the db directory
 7. *(Optional)* `npm run populatedb` to add data to the database
+8. Access the website with your web-browser with the address `https://localhost:8000` *(or your specified port)*
 
 ## Tech stack
 
