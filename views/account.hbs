@@ -1,0 +1,201 @@
+<div class="container my-5">
+
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <div class="card">
+                <div class="card-body row align-items-center">
+                    <div class="col-3 d-flex justify-content-center">
+                        <div class="rounded-circle circle-img me-2 img-thumbnail">
+                            <img class="avatar" src="img/users/{{ picture_path }}">
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <h5 class="card-title"><span class="badge rounded bg-danger text-light">Admin</span> {{
+                            session.user.username }}</h5>
+                        <p class="card-text">Description de l'utilisateur ...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-4">
+                <div class="card-header">
+                    <div class="py-2">
+                        <h5 class="card-title">
+                            <i class="bi-heart-fill text-danger"></i>
+                            Amis
+                        </h5>
+                        <h6 class="card-subtitle text-muted fw-normal">La liste de tous vos amis !</h6>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                </div>
+            </div>
+            <div class="card mt-4">
+                <div class="card-header">
+                    <div class="py-2">
+                        <h5 class="card-title">
+                            <i class="bi-bar-chart-fill text-warning"></i>
+                            Statistiques
+                        </h5>
+                        <h6 class="card-subtitle text-muted fw-normal">Vos statistiques sur tous les jeux !</h6>
+                    </div>
+                </div>
+                <div class="card-body">
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="card mt-4 mt-lg-0">
+                <div class="card-header">
+                    <div class="py-2">
+                        <h5 class="card-title">
+                            <i class="bi-gear-fill text-secondary"></i>
+                            Paramètres
+                        </h5>
+                        <h6 class="card-subtitle text-muted fw-normal">Configurez votre compte à votre sauce !</h6>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5>Informations personnelles</h5>
+                    <hr>
+
+                    <h5>Apparence</h5>
+                    <hr>
+                    {{> errorDisplayer }}
+                    <form class="form" method="POST" action="" enctype="multipart/form-data">
+
+                        <h6><i class="bi-user"></i> Modifiez votre avatar</h6>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label fst-italic">Veuillez choisir un fichier</label>
+                            <input type="file" name="userimg" id="formFile"
+                                class="form-control {{#if (isInvalid 'userimg' errorList)}}is-invalid{{/if}}">
+                        </div>
+
+                        <div class="mb-3 row justify-content-around">
+                            <button class="btn btn-primary col-4" type="submit">Upload</button>
+                            <button class="btn btn-outline-danger col-4" type="reset">Annuler</button>
+                        </div>
+
+                    </form>
+
+                    <h5>Zone dangereuse</h5>
+                    <hr>
+                    <div>
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-12 col-lg-6 text-center">Change de mot de passe</div>
+                            <div class="col-12 col-lg-6 text-center">
+                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                                        data-bs-target="#changePasswordModal">
+                                        <i class="bi bi-lock-fill"></i> Changer de mot de passe
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-12 col-lg-6 text-center">Supprimer votre compte</div>
+                            <div class="col-12 col-lg-6 text-center mt-2">
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#deleteAccountModal">
+                                    <i class="bi bi-trash-fill"></i> Supprimer mon compte
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Delete account modal -->
+    <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModal"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" action="/account/delete">
+                    <div class="modal-header d-flex flex-column">
+                        <h4>Suppression du compte</h4>
+                        <br>
+                        <p>Nous sommes tristes de vous voir partir !</p>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+                            <label for="deleteAccountFormPassword" class="form-label fst-italic">Veuillez indiquer votre
+                                mot de passe pour confirmer</label>
+                            <input type="password" name="password" id="deleteAccountFormPassword"
+                                class="form-control {{#if (isInvalid 'password' errorList)}}is-invalid{{/if}}">
+                        </div>
+
+                        <div class="alert alert-danger d-flex align-items-center">
+                            <div>
+                                <i class="bi bi-exclamation-triangle" style="font-size: 2rem"></i>
+                            </div>
+                            <div class="px-3">
+                                Attention, comme nous respectons le RGPD, toutes vos données seront <strong>supprimées
+                                    définitivement</strong> !
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Change password modal -->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModal"
+        aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" action="/account/changepwd">
+                    <div class="modal-header d-flex flex-column">
+                        <h4>Changement de mot de passe</h4>
+                        <br>
+                        <p>Veuillez remplir le formulaire pour changer votre mot de passe.</p>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+                            <label for="changePasswordModal" class="form-label">Mot de passe actuel</label>
+                            <input type="password" name="oldPassword"
+                                class="form-control {{#if (isInvalid 'password' errorList)}}is-invalid{{/if}} mb-3">
+
+                            <label for="changePasswordModal" class="form-label mt-3">Nouveau mot de passe</label>
+                            <input type="password" name="newPassword"
+                                class="form-control {{#if (isInvalid 'password' errorList)}}is-invalid{{/if}}">
+
+
+                            <label for="changePasswordModal" class="form-label">Confirmation nouveau mot de
+                                passe</label>
+                            <input type="password" name="newPasswordConfirm"
+                                class="form-control {{#if (isInvalid 'password' errorList)}}is-invalid{{/if}}">
+                        </div>
+
+                        <div class="alert alert-primary d-flex align-items-center">
+                            <div>
+                                <i class="bi bi-info" style="font-size: 2rem"></i>
+                            </div>
+                            <div class="px-3">
+                                Votre mot de passe doit être suffisement long, contenir au moins une majuscule, un
+                                nombre et un caractère spécial.
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-success">Confirmer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

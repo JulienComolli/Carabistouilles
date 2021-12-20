@@ -1,21 +1,44 @@
 // Node Modules Imports
-import Database from "better-sqlite3";
-import fs from "fs";
+import Express from "express";
 
 // Custom Imports
-import { DBNAME } from "./config/public-config.js";
+import { SERVER_PORT } from "./config/serverConfig.js";
 
-// Init DB
-const DB = new Database(`./db/${DBNAME}`);
+import session from "./modules/session.js"
+import handleBars from "./modules/handleBars.js";
 
+import LoginRoute from "./routes/loginRoute.js";
+import RegisterRoute from "./routes/registerRoute.js";
+import AccountRoute from './routes/accountRoute.js';
 
-console.log("Hello Carabistouilles.");
+import './models/UserModel.js';
 
+// Init Express server
+const server = Express();
 
-/* EXAMPLES D'USAGE DE LA BASE DE DONNEES */
-DB.exec(fs.readFileSync('./db/scripts/clearDb.sql', 'utf-8'));
-DB.exec(fs.readFileSync('./db/scripts/createDb.sql', 'utf-8'));
-DB.exec(fs.readFileSync('./db/scripts/populateDb.sql', 'utf-8'));
+server.use(Express.urlencoded({ extended: true, limit: '20kb'})); // Middleware for handling forms
+server.use(Express.static('public'));
 
-console.log(DB.prepare('SELECT * FROM Users').all()); // Retourne un tableau
-console.log(DB.prepare('SELECT * FROM Games').get()); // Retourne la première valeur
+server.use(session);
+server.engine('hbs', handleBars);
+server.set('view engine',  'hbs');
+
+// == Router ==
+server.get('/', (req, res) => {
+    res.render('home', { session : req.session });
+});
+
+server.use('/login', LoginRoute);
+server.use('/register', RegisterRoute);
+server.use('/account', AccountRoute);
+
+server.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/');
+});
+
+// Launching server
+
+server.listen(SERVER_PORT, () => {
+    console.log(`✅ Server started on port ${SERVER_PORT}`);
+});

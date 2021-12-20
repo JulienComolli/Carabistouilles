@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="mb-0 mt-0 h1 navbar-brand" href="/" id="nav-carabistouilles"> <img src="img/logo-empty.png" alt="logo">Carabistouilles</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Accueil <span class="visually-hidden">(current)</span></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="/">A propos <span class="visually-hidden">(current)</span></a>
+                </li>
+
+            </ul>
+
+            <div class="d-flex gap-3 flex-lg-row flex-column">
+                {{#if session.authenticated}}
+                <a href="logout" class="btn btn-outline-light crb-navbtn" type="button">
+                    Déconnexion
+                </a>
+                <a href="account" class="btn btn-light crb-navbtn" type="button">
+                    <i class="bi-person"></i>
+                    Mon compte
+                </a>
+                {{else}}
+                <a href="register" class="btn btn-outline-light crb-navbtn {{#if onRegisterPage }} disabled{{/if}}" type="button">
+                    S'inscrire
+                </a>
+                <a href="login" class="btn btn-light crb-navbtn {{#if onLoginPage }} disabled{{/if}}" type="button">
+                    Se connecter
+                </a>
+                {{/if}}
+            </div>
+        </div>
+
+        
+    </div>
+</nav>

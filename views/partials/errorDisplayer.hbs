@@ -1,0 +1,13 @@
+{{#if errors }}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <b>Erreur(s) : </b>
+    <ul>
+        {{#each errors}}
+            {{#if message}}
+                <li>{{ message }}</li>
+            {{/if}}
+        {{/each}}
+    </ul>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">    </button>
+</div>
+{{/if}}

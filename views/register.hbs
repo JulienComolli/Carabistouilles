@@ -1,0 +1,51 @@
+<main class="container my-5">
+
+	<h1 class="mb-4 text-center">Inscription</h1>
+
+	<form class="mx-auto crb-form" style="width: 100%; max-width: 600px;" method="POST" action="">
+
+		<img class="mb-4" src="./img/logo.png" alt="" height="120" style="margin: 0 auto; display: block;">
+
+		{{> errorDisplayer }}
+
+		<div class="form-group">
+			<label for="inputPseudonyme">Pseudonyme</label>
+			<input type="text" name="username" id="inputPseudonyme"
+				class="form-control {{#if (isInvalid 'username' errors)}}is-invalid{{/if}}" 
+				placeholder="Pseudonyme" value="{{ inputValues.username }}">
+			<small class="form-text text-muted">Vous pourrez le changer plus tard.</small>
+		</div>
+
+		<div class="form-group">
+			<label for="inputEmail">Adresse e-mail</label>
+			<input type="email" name="email" id="inputEmail" 
+				class="form-control {{#if (isInvalid 'email' errors)}}is-invalid{{/if}}"
+				placeholder="Entrez votre e-mail" value="{{ inputValues.email }}">
+			<input type="email" name="emailConfirm" id="inputEmail"
+				class="form-control mt-1 {{#if (isInvalid 'emailConfirm' errors)}}is-invalid{{/if}}"
+				placeholder="Confirmez votre e-mail" value="{{ inputValues.emailConfirm }}">
+			<small class="form-text text-muted">Nous ne partagerons pas votre e-mail.</small>
+		</div>
+
+		<div class="form-group">
+			<label for="inputPassword">Mot de passe</label>
+			<input type="password" name="password" id="inputPassword" 
+				class="form-control {{#if (isInvalid 'password' errors)}}is-invalid{{/if}}"
+				placeholder="Entrez votre mot de passe" value="{{ inputValues.password }}">
+			<small class="form-text text-muted">Votre mot de passe doit contenir au moins une majuscule, un nombre et un caractère spécial !</small>
+			<input type="password" name="passwordConfirm" id="inputPassword"
+				class="form-control mt-1 {{#if (isInvalid 'passwordConfirm' errors)}}is-invalid{{/if}}"
+				placeholder="Confirmez votre mot de passe" value="{{ inputValues.passwordConfirm }}">
+		</div>
+
+		<div class="d-grid col-6 mx-auto mt-4 gap-2">
+            <button class="btn btn-dark" type="submit">S'inscrire</button>
+
+            <p class="mt-2 text-center">
+                Déjà inscrit ? <a href="/login">Connectez-vous !</a>
+            </p>   
+        </div>
+
+		<p class="mt-3 mb-2 text-muted">&copy; Carabistouilles - Page d'inscription</p>
+	</form>
+</main>
