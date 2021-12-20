@@ -1,4 +1,5 @@
 import Express from 'express';
+import { addNotification, Notification } from '../controllers/NotificationController.js';
 import RegiserUser from '../controllers/RegisterUser.js';
 
 const RegisterRoute = Express.Router();
@@ -19,7 +20,8 @@ RegisterRoute.post('/', (req, res) => {
         }
     }
 
-    res.send("Bravo vous êtes inscrit !");
+    addNotification(req.session, new Notification('Inscription réussie', 'Vous êtes inscrit, vous pouvez dès à présent vous connecter !', 'success'));
+    res.redirect('login');
 
 });
 

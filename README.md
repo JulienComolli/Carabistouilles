@@ -19,7 +19,7 @@ Our webserver is easy to setup.
 
 **Front-end** : HTML/CSS/JS, *(VueJS & SocketIO soon)*
 
-**Back-end** : NodeJS & Express
+**Back-end** : NodeJS, Express, Handlebars
 
 **Database** : SQLite
 

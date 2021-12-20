@@ -29,3 +29,10 @@ html, body {
 .crb-navbtn {
     width: 140px
 }
+
+/* Notifications */
+.notification-displayer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}

@@ -6,7 +6,8 @@ import fileUpload from 'express-fileupload';
 
 import { MAX_IMG_SIZE } from '../config/accountConfig.js';
 import { getById, getPicturePath, deleteUser } from '../models/UserModel.js';
-import { changeImage, changePassword } from '../controllers/AccountController.js'
+import { changeImage, changePassword } from '../controllers/AccountController.js';
+import { addNotification, getNotifications, Notification } from '../controllers/NotificationController.js';
 
 const AccountRoute = Express.Router();
 
@@ -35,8 +36,10 @@ AccountRoute.get('', (req, res) => {
 AccountRoute.post('/', (req, res) => {
 
     // Missing inputs
-    if (!req.files?.userimg)
+    if (!req.files?.userimg){
+        addNotification(req.session, new Notification('Erreur', 'Vous devez fournir une image !', 'error'))
         return res.redirect('/account');
+    }
 
     changeImage(req.session.user.id, req.files.userimg, (err) => {
 
@@ -57,9 +60,12 @@ AccountRoute.post('/delete', (req, res) => {
         console.log('Demande de suppression du compte #' + req.session.user.id + ' (' + req.session.user.username + ')');
         deleteUser(req.session.user.id, req.body.password);
         console.log('Compte #' + req.session.user.id + ' supprimé (' + req.session.user.username + ')')
-        req.session.destroy()
-        res.redirect('/');
+        req.session.regenerate((err) => {
+            addNotification(req.session, new Notification('Compte supprimé', 'Votre compte a été supprimé !', 'success'));
+            res.redirect('/');
+        });
     } catch (err) {
+        addNotification(req.session, new Notification('Erreur', 'Mot de passe éronné', 'error'));
         res.redirect('/account');
     }
 

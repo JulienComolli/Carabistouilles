@@ -1,0 +1,27 @@
+{{#if session.notifications }}
+<div class="toast-container notification-displayer p-3" id="toastPlacement">
+    {{#each (displayNotifications session)}}
+    <div class="toast border-0">
+        {{#if type}}
+        {{#if (eq type 'success')}}
+        <div class="toast-header bg-success text-white">
+            <div class="me-2"><i class="bi bi-check"></i> </div>
+        {{/if}} 
+        {{#if (eq type 'error')}}
+        <div class="toast-header bg-danger text-white">
+            <div class="me-2"><i class="bi bi-x-lg"></i> </div>
+        {{/if}}
+        {{else}}
+        <div class="toast-header bg-primary text-white">
+            <div class="me-2"><i class="bi bi-info"></i> </div>
+        {{/if}}
+            <strong class="me-auto"> {{ title }}</strong>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            {{ message }}
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{/if}}

@@ -1,5 +1,6 @@
 import Express from 'express';
 import LoginUser from '../controllers/LoginUser.js';
+import { addNotification, getNotifications, Notification } from '../controllers/NotificationController.js';
 
 const LoginRoute = Express.Router();
 
@@ -14,11 +15,11 @@ LoginRoute.use('/', (req, res, next) => {
 });
 
 LoginRoute.get('/', (req, res) => {
-    res.render('login');
+    res.render('login', {session: req.session});
 });
 
 LoginRoute.post('/', (req, res) => {
-
+    
     try{
         LoginUser(req.body, req);
     }catch(e){
@@ -31,6 +32,7 @@ LoginRoute.post('/', (req, res) => {
         return
     }
 
+    addNotification(req.session, new Notification('Connecté', 'Vous êtes à présent connecté !'));
     res.redirect('/account');
 
 });
