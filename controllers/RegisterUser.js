@@ -82,7 +82,7 @@ function validateInputs(body) {
     if (body.password != body.passwordConfirm)
         errors.push({ message: 'Les mots de passe ne correspondent pas !', input: 'passwordConfirm' });
     
-    if (validatePassword(body.password)) {
+    if (!validatePassword(body.password)) {
         errors.push({
             message:
                 `Le mot de passe doit contenir au moins ${PWD_MIN_LEN} caractères, une majuscule, un nombre et un caractère spécial !`,

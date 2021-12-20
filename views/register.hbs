@@ -32,6 +32,7 @@
 			<input type="password" name="password" id="inputPassword" 
 				class="form-control {{#if (isInvalid 'password' errors)}}is-invalid{{/if}}"
 				placeholder="Entrez votre mot de passe" value="{{ inputValues.password }}">
+			<small class="form-text text-muted">Votre mot de passe doit contenir au moins une majuscule, un nombre et un caractère spécial !</small>
 			<input type="password" name="passwordConfirm" id="inputPassword"
 				class="form-control mt-1 {{#if (isInvalid 'passwordConfirm' errors)}}is-invalid{{/if}}"
 				placeholder="Confirmez votre mot de passe" value="{{ inputValues.passwordConfirm }}">
