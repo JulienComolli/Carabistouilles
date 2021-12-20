@@ -7,7 +7,7 @@ import fileUpload from 'express-fileupload';
 import { MAX_IMG_SIZE } from '../config/accountConfig.js';
 import { getById, getPicturePath, deleteUser } from '../models/UserModel.js';
 import { changeImage, changePassword } from '../controllers/AccountController.js';
-import { addNotification, getNotifications, Notification } from '../controllers/NotificationController.js';
+import { addNotification, Notification } from '../controllers/NotificationController.js';
 
 const AccountRoute = Express.Router();
 
@@ -46,6 +46,7 @@ AccountRoute.post('/', (req, res) => {
         if (err)
             return res.render('account', { session: req.session, errors: err?.errors, picture_path: getPicturePath(req.session.user.id) });
 
+        addNotification(req.session, new Notification('Nouvel avatar', 'Votre avatar a bien été modifié !', 'success'));
         return res.redirect('account');
     });
 
@@ -57,7 +58,6 @@ AccountRoute.post('/delete', (req, res) => {
         return res.redirect('/account');
 
     try {
-        console.log('Demande de suppression du compte #' + req.session.user.id + ' (' + req.session.user.username + ')');
         deleteUser(req.session.user.id, req.body.password);
         console.log('Compte #' + req.session.user.id + ' supprimé (' + req.session.user.username + ')')
         req.session.regenerate((err) => {
@@ -77,12 +77,14 @@ AccountRoute.post('/changepwd', (req, res) => {
     let oldPass = req.body.oldPassword;
     let newPass = req.body.newPassword;
     let newPassConfirm = req.body.newPasswordConfirm;
-    console.log(oldPass)
+
     changePassword(usrId, oldPass, newPass, newPassConfirm, (err) => {
-        if(err)
-            res.render('account', { session: req.session, showPassModal: "changePasswordModal", errors: err?.errors })
-        else
-            res.render('account', { session: req.session, showPassModal: null }); // avec les notifications succès
+        if(err){
+            return res.render('account', { session: req.session, showPassModal: "changePasswordModal", errors: err?.errors })
+        }else{
+            addNotification(req.session, new Notification('Modification enregitrée', 'Votre mot de passe a bien été modifié !', 'success'));
+            return res.redirect('account');
+        }
     });
 
 });
