@@ -30,7 +30,7 @@ export function addNotificationText(session, title, message, type=null){
 }
 
 /**
- * 
+ * Returns all notifications from the user's session and clear them from it's session
  * @param {Session} session User's session 
  * @returns Notifications to be displayed
  */
@@ -41,7 +41,7 @@ export function displayNotifications(session){
 }
 
 /**
- * Get all the notifications of a session
+ * Returns all notifications from the user's session
  * @param {Session} session 
  * @returns {[Notification]} notifications
  */
@@ -52,7 +52,7 @@ export function getNotifications(session){
 }
 
 /**
- * Clear user's notifications
+ * Remove all notifications from the user's session.
  * @param {Session} session 
  */
 export function clearNotifications(session){
