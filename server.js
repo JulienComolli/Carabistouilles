@@ -2,7 +2,7 @@
 import Express from "express";
 
 // Custom Imports
-import { SERVER_PORT } from "./config/publicConfig.js";
+import { SERVER_PORT } from "./config/serverConfig.js";
 
 import session from "./modules/session.js"
 import handleBars from "./modules/handleBars.js";

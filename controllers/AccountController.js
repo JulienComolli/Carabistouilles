@@ -4,7 +4,7 @@ import mmmagic from 'mmmagic';
 const Magic = new mmmagic.Magic(mmmagic.MAGIC_MIME_TYPE); // MIME Type middleware
 
 import { getPicturePath, setPicturePath, correctPassword, updatePassword } from '../models/UserModel.js';
-import { DEFAULT_USER_PICTUREPATH, AUTHORIZED_IMG_TYPES } from '../config/publicConfig.js';
+import { DEFAULT_USER_PICTUREPATH, AUTHORIZED_IMG_TYPES } from '../config/serverConfig.js';
 import { getRandomString, validatePassword } from '../modules/utils.js';
 import { PWD_MIN_LEN } from '../config/accountConfig.js';
 

@@ -9,7 +9,7 @@ var DB;
 if(!fs.existsSync(`./db/${DBNAME}`)){
     console.error('DataBase must be created before populating it. Launch the server once create it.');
 } else {
-    DB = new Database(`./db/${DBNAME}`); // Charger en mémoire
+    DB = new Database(`./db/${DBNAME}`);
     DB.exec(fs.readFileSync('./db/scripts/populateDb.sql', 'utf-8'));
 }
 
