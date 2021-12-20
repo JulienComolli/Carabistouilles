@@ -2,3 +2,6 @@ node_modules/
 db/carabistouilles.db
 config.js
 test.js
+
+public/img/users/
+!public/img/users/default.png
