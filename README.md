@@ -44,7 +44,7 @@ To prevent *easy to crack* passwords, we have established a regular expression t
 
 To handle users sessions we use the library [express-session](https://github.com/expressjs/session). To encrypt the data we use a session key stored in the `config\serverConfig.js`. To increase the security we can imagine a session key per user and a more secure place to store it.
 
-### Image Format
+### Image Type
 
 As users can upload images, we must check the type of file they upload. To do so we use the library [mmmagic](https://github.com/mscdex/mmmagic). We only allow certain file type defined in `config\serverCOnfig.js`. If an user upload a wrong file-type they get an error message.
 
